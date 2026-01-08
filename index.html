@@ -9,15 +9,14 @@
 
 <h3>TrendBot Control Panel</h3>
 
-<button onclick="send('START')">▶️ START BOT</button><br><br>
-<button onclick="send('STOP')">⏹ STOP BOT</button><br><br>
+<button onclick="sendCmd('START')">▶️ START BOT</button><br><br>
+<button onclick="sendCmd('STOP')">⏹ STOP BOT</button>
 
 <script>
 const tg = Telegram.WebApp;
 
-function send(cmd) {
-  tg.sendData(cmd);
-  alert("Command sent: " + cmd);
+function sendCmd(cmd) {
+  tg.sendData(cmd);   // ⬅️ INI YANG PENTING
 }
 
 tg.expand();
