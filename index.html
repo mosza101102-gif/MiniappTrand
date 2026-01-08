@@ -9,6 +9,19 @@
 
 <h3>TrendBot Control Panel</h3>
 
+<label>Symbol: <input id="symbol" value="GC=F"></label><br><br>
+<label>Timeframe: 
+<select id="tf">
+  <option value="1m">1m</option>
+  <option value="5m" selected>5m</option>
+  <option value="10m">10m</option>
+</select>
+</label><br><br>
+
+<label>RSI BUY <= <input id="rsi_buy" type="number" value="30"></label><br><br>
+<label>RSI SELL >= <input id="rsi_sell" type="number" value="70"></label><br><br>
+<label>RSI CLOSE <input id="rsi_close" type="number" value="50"></label><br><br>
+
 <button onclick="sendCmd('START')">▶️ START BOT</button><br><br>
 <button onclick="sendCmd('STOP')">⏹ STOP BOT</button>
 
@@ -16,7 +29,16 @@
 const tg = Telegram.WebApp;
 
 function sendCmd(cmd) {
-  tg.sendData(cmd);   // ⬅️ INI YANG PENTING
+  // Ambil semua input value
+  const data = {
+    cmd: cmd,
+    symbol: document.getElementById("symbol").value,
+    tf: document.getElementById("tf").value,
+    rsi_buy: parseFloat(document.getElementById("rsi_buy").value),
+    rsi_sell: parseFloat(document.getElementById("rsi_sell").value),
+    rsi_close: parseFloat(document.getElementById("rsi_close").value)
+  };
+  tg.sendData(JSON.stringify(data));  // Kirim JSON ke Python
 }
 
 tg.expand();
