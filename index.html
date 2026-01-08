@@ -7,11 +7,21 @@
 </head>
 <body>
 
-<h3>TrendBot Mini App</h3>
+<h3>TrendBot Control Panel</h3>
 
-<button onclick="Telegram.WebApp.sendData('test')">
-  TEST KIRIM KE BOT
-</button>
+<button onclick="send('START')">▶️ START BOT</button><br><br>
+<button onclick="send('STOP')">⏹ STOP BOT</button><br><br>
+
+<script>
+const tg = Telegram.WebApp;
+
+function send(cmd) {
+  tg.sendData(cmd);
+  alert("Command sent: " + cmd);
+}
+
+tg.expand();
+</script>
 
 </body>
 </html>
