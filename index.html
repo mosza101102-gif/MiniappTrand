@@ -29,7 +29,6 @@
 const tg = Telegram.WebApp;
 
 function sendCmd(cmd) {
-  // Ambil semua input value
   const data = {
     cmd: cmd,
     symbol: document.getElementById("symbol").value,
@@ -38,7 +37,7 @@ function sendCmd(cmd) {
     rsi_sell: parseFloat(document.getElementById("rsi_sell").value),
     rsi_close: parseFloat(document.getElementById("rsi_close").value)
   };
-  tg.sendData(JSON.stringify(data));  // Kirim JSON ke Python
+  tg.sendData(JSON.stringify(data));
 }
 
 tg.expand();
