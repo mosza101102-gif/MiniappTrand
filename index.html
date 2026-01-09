@@ -10,7 +10,8 @@
 <h3>TrendBot Control Panel</h3>
 
 <label>Symbol: <input id="symbol" value="GC=F"></label><br><br>
-<label>Timeframe: 
+
+<label>Timeframe:
 <select id="tf">
   <option value="1m">1m</option>
   <option value="5m" selected>5m</option>
@@ -26,20 +27,23 @@
 <button onclick="sendCmd('STOP BOT')">⏹ STOP BOT</button>
 
 <script>
-const tg = Telegram.WebApp;
+  const tg = window.Telegram.WebApp;
+  tg.ready();     // WAJIB di HP
+  tg.expand();
 
-function sendCmd(cmd) {
-  const data = {
-    cmd: cmd,
-    symbol: document.getElementById("symbol").value,
-    tf: document.getElementById("tf").value,
-    rsi_buy: parseFloat(document.getElementById("rsi_buy").value),
-    rsi_sell: parseFloat(document.getElementById("rsi_sell").value),
-    rsi_close: parseFloat(document.getElementById("rsi_close").value)
-  };
-  tg.sendData(JSON.stringify(data));  // <<< ini penting
-}
-tg.expand();
+  function sendCmd(cmd) {
+    const data = {
+      cmd: cmd,
+      symbol: document.getElementById("symbol").value,
+      tf: document.getElementById("tf").value,
+      rsi_buy: Number(document.getElementById("rsi_buy").value),
+      rsi_sell: Number(document.getElementById("rsi_sell").value),
+      rsi_close: Number(document.getElementById("rsi_close").value)
+    };
+
+    tg.sendData(JSON.stringify(data));
+    tg.close();   // WAJIB di HP
+  }
 </script>
 
 </body>
