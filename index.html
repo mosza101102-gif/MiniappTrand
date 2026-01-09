@@ -37,9 +37,8 @@ function sendCmd(cmd) {
     rsi_sell: parseFloat(document.getElementById("rsi_sell").value),
     rsi_close: parseFloat(document.getElementById("rsi_close").value)
   };
-  tg.sendData(JSON.stringify(data));
+  tg.sendData(JSON.stringify(data));  // <<< ini penting
 }
-
 tg.expand();
 </script>
 
